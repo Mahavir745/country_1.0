@@ -1,0 +1,160 @@
+/* default settings part */
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/*making variables */
+:root{
+  --element-color1: #002fc3;
+  --element-color2:#74dae2;
+  --element-color3: #fff;
+  --element-color4: #f5f5f5;
+  --element-color5: #ddd;
+  --element-color6: #930808dd;
+  --element-color7: #010142;
+}
+
+
+/* making some changes of default tags */
+li{
+  list-style-type: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+span{
+  display: inline-block;
+}
+
+button{
+  cursor: pointer;
+  opacity: 80%;
+  transition: opacity .3s linear;
+}
+button:hover{
+  opacity: 100%;
+}
+
+
+main{
+  width: 1905px;
+  .main_container{
+    width: 1400px;
+    margin:100px auto;
+    height: 720px;
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .child1{
+      width: 500px;
+      height: 500px;
+      /* border: 1px solid red; */
+      background-image: linear-gradient(120deg,white,#f5f5f5,skyblue);
+      box-shadow: 2px 3px 4px #808088;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      .child1_items1{
+        width: 420px;
+        height: 300px;
+        overflow: hidden;
+        box-shadow:  2px 3px 4px rgba(62, 58, 58, 0.806);
+
+        img{
+          width: 100%;
+          height: 100%;
+          transition: scale .28s linear;
+        }
+      }
+      
+      .child1_items2{
+        height: 56px;
+        width: 420px;
+        /* border: 1px solid red; */
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        button{
+          width: 30%;
+          height: 40px;
+          text-transform: capitalize;
+          font-size: 18px;
+          background-color: var(--element-color1);
+          color: var(--element-color4);
+          border: none;
+          border-radius: 4px;
+        }
+      }
+
+    }
+
+    .child1:hover .child1_items1{
+      img{
+        scale: 1.05;
+      }
+    }
+
+    .child2{
+      width: 700px;
+      height: 680px;
+      /* border: 1px solid red; */
+      box-shadow: 2px 3px 4px #808080;
+
+      #flag_name{
+        text-align: center;
+        font-size: 48px;
+        font-weight: 500;
+        margin-top: 40px;
+        letter-spacing: -2px;
+        background-image: linear-gradient(120deg,red,blue,white);
+        color: transparent;
+        background-clip: text;
+      }
+
+      p{
+        height: 26px;
+        /* border: 1px solid red; */
+        padding-left: 20px;
+        padding-top: 10px;
+        margin: 10px auto;
+        width: 60%;
+        
+      }
+      .p_element1{
+        font-size: 20px;
+      }
+
+      .p_element5{
+        padding: 0;
+        height: 220px;
+        width: 90%;
+        text-align: center;
+        h1{
+          font-size: 80px;
+          font-weight: 300;
+        }
+        span{
+          text-transform: capitalize;
+        }
+      }
+
+      .p_element6{
+        font-size: 24px;
+        text-align: center;
+        height: 28px;
+        padding: 0;
+      }
+    }
+  }
+}
