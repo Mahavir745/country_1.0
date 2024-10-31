@@ -227,7 +227,7 @@ main{
   }
 
   .more_button_container{
-    margin-bottom: 100px;
+    margin-bottom: 20rem;
     position: relative;
     top: 180px;
     button{
@@ -235,6 +235,7 @@ main{
       height: 40px;
       margin: auto;
       display: flex;
+      text-decoration: underline;
       justify-content: center;
       background-color: transparent;
       border: none;

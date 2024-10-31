@@ -14,12 +14,8 @@ const p_element6 = document.querySelector(".p_element6")
 
 const getTitle = localStorage.getItem("flagname")
 let flag_details = {}
+let flag_data = JSON.parse(localStorage.getItem("fav_list")) || [];
 title.textContent = getTitle
-
-
-
-
-
 
 backBtn.addEventListener("click",()=>{
   location.href = "index.html"
@@ -44,8 +40,10 @@ apiFetch().then((data)=>{
       flag_details["flagImage"] = ele.flags.png
     }
   })
+
   flagPic.src = flag_details.flagImage
-  flag_name.textContent = getTitle
+  flag_name.innerHTML = `${getTitle} 
+  <span id='fav_icon'>❤︎</span>`
   p_element1.textContent = `Capital: ${flag_details.capital}`
   p_element2.textContent = `Region: ${flag_details.region}`
   p_element3.textContent = `Area: ${flag_details.area}`
@@ -60,5 +58,16 @@ apiFetch().then((data)=>{
   p_element6.textContent = flag_details.flagIcon
 
 
-  console.log(flag_details)
+  let fav_icon = document.querySelector("#fav_icon")
+  fav_icon.addEventListener("click",()=>{
+    fav_icon.style.backgroundImage = "linear-gradient(120deg,red,gray)"
+
+    if(!(flag_data.includes(flag_details))){
+      flag_data.push(flag_details)
+      localStorage.setItem("fav_list",JSON.stringify(flag_data))
+
+    }
+  })
 })
+
+
