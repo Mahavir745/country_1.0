@@ -110,20 +110,24 @@ header{
                 opacity: 100%;
               }
 
-              ul{
+              .dropdown_list{
                 width: 494px;
-                height: 200px;
-                border: 1px solid red;
+                max-height: 150px;
+                border: 1px solid #ccc;
                 flex-shrink: 0;
-                top: 180px;
+                overflow-y: auto;
+                top: 176px;
                 background-color: #fff;
                 position: absolute;
+                z-index: 1000;
+                display: none;
 
-                li{
-                  border: 1px solid red;
-                  height: 26px;
-                  margin: 4px;
-                  padding-left: 20px;
+                .dropdown_item {
+                  padding: 10px;
+                  cursor: pointer;
+                }
+                .dropdown_item:hover{
+                  background-color: #f0f0f0;
                 }
 
                 button{
@@ -256,6 +260,6 @@ main{
 }
 
 /* footer part start */
-footer{
+/* footer{
 
-}
+} */

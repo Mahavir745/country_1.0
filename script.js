@@ -12,7 +12,43 @@ let allcards = []
 let dropDownData = []
 let storeData = [];
 
+const countryNamelist = [];
 
+search_section.addEventListener("input",(e)=>{
+  const value = e.target.value.toLowerCase();
+  dropdown_list.innerHTML = ""
+  dropdown_list.style.display = "none"
+
+  if(value){
+    const filter = countryNamelist.filter((ele)=>{
+      return ele.toLowerCase().includes(value)
+    })
+
+    if(filter.length > 0){
+      filter.forEach((ele)=>{
+        const div = document.createElement("div")
+        div.textContent = ele
+        div.classList.add("dropdown_item")
+
+        div.addEventListener("click", ()=>{
+          search_section.value = ele;
+          dropdown_list.innerHTML = ""
+          dropdown_list.style.display = "none"
+        })
+
+        dropdown_list.append(div)
+      })
+      dropdown_list.style.display = "block"
+    }
+  }
+})
+
+
+document.addEventListener("click",(e)=>{
+  if(!search_section.contains(e.target) && !dropdown_list.contains(e.target)){
+    dropdown_list.style.display = "none"
+  }
+})
 
 
 // fetching data
@@ -43,6 +79,8 @@ apiFetch().then((data)=>{
       count: 1
     }
     storeData.push(obj)
+    countryNamelist.push(obj["name"])
+
   })
 
   languages = languages.sort()

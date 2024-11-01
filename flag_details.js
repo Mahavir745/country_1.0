@@ -32,7 +32,7 @@ apiFetch().then((data)=>{
     if(ele.name.common === getTitle){
       flag_details["topLevelDomain"] = ele.tld[0]
       flag_details["capital"] = ele.capital[0]
-      flag_details["region"] = ele.regiong
+      flag_details["region"] = ele.region
       flag_details["population"] = ele.population
       flag_details["area"] = ele.area
       flag_details["languages"] = ele.languages
