@@ -122,7 +122,8 @@ function createCard(data){
     ele.addEventListener("click",()=>{
       let flagName = ele.children[0].textContent
       localStorage.setItem("flagname", flagName)
-      window.open("flag_details.html", "_blank")
+      // window.open("flag_details.html", "_blank")
+      location.href = "flag_details.html"
 
     })
   })
@@ -132,72 +133,95 @@ function createCard(data){
 search_section.addEventListener("change",(e)=>{
   let change = e.target.value.toLowerCase()
 
-  allcards.forEach((ele)=>{
-    let foundHeading = ele.children[0].textContent.toLowerCase()
-
-    if(!(foundHeading.includes(change))){
-      ele.style.display = "none"
-    }
-    else{
-      ele.style.display = "block"
-      main_container.append(ele)
-
-    }
-  })
+  if(change !== "none"){
+      allcards.forEach((card)=>{
+        card.style.display = "none"
+      })
+      allcards.forEach((ele)=>{
+        let foundHeading = ele.children[0].textContent.toLowerCase()
+          if(foundHeading.includes(change)){
+            ele.style.display = "block"
+            main_container.append(ele)
+          }
+      })
+  }
+  else{
+    allcards.forEach((card)=>{
+      card.style.display = "block"
+    })
+  }
 
 })
 
 
+
 languages_select.addEventListener("change",(e)=>{
   const value = e.target.value;
+  // console.log(languages_select.value)
 
-  allcards.forEach((card)=>{
-    card.style.display = "none"
-  })
-
-  storeData.forEach((ele)=>{
-    let name = ele["name"];
-    let languages = ele["languages"]
-
-    for(let i in languages){
-      if(languages[i]===value){
-
+  if(value !== 'none'){
       allcards.forEach((card)=>{
-        let foundHeading = card.children[0].textContent
-          if(name === foundHeading){
-            card.style.display = "block"
-            main_container.append(card)
+        card.style.display = "none"
+      })
+    
+      storeData.forEach((ele)=>{
+        let name = ele["name"];
+        let languages = ele["languages"]
+    
+        for(let i in languages){
+          if(languages[i]===value){
+    
+          allcards.forEach((card)=>{
+            let foundHeading = card.children[0].textContent
+              if(name === foundHeading){
+                card.style.display = "block"
+                main_container.append(card)
+              }
+    
+            })
           }
-
-        })
-      }
+        }
+      })
     }
-  })
+  else{
+    allcards.forEach((card)=>{
+      card.style.display = "block"
+    })
+  }
+
 })
 
 
 region_select.addEventListener("change",(e)=>{
   const value = e.target.value;
 
-  allcards.forEach((card)=>{
-    card.style.display = "none"
-  })
+  if(value !== "none"){
+    allcards.forEach((card)=>{
+      card.style.display = "none"
+    })
 
-  storeData.forEach((ele)=>{
-    let name = ele["name"];
-    let region = ele["region"]
+    storeData.forEach((ele)=>{
+      let name = ele["name"];
+      let region = ele["region"]
 
-    if(region ===value){
-      console.log(region,value)
-      allcards.forEach((card)=>{
-        let foundHeading = card.children[0].textContent
-          if(name === foundHeading){
-            card.style.display = "block"
-            main_container.append(card)
-          }
-      })
-    }
-  })
+      if(region ===value){
+        console.log(region,value)
+        allcards.forEach((card)=>{
+          let foundHeading = card.children[0].textContent
+            if(name === foundHeading){
+              card.style.display = "block"
+              main_container.append(card)
+            }
+        })
+      }
+    })
+  }
+  else{
+    allcards.forEach((card)=>{
+      card.style.display = "block"
+    })
+  }
+
 })
 
 

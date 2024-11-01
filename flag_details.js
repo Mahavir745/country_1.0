@@ -60,13 +60,18 @@ apiFetch().then((data)=>{
 
   let fav_icon = document.querySelector("#fav_icon")
   fav_icon.addEventListener("click",()=>{
-    fav_icon.style.backgroundImage = "linear-gradient(120deg,red,gray)"
 
+    let message = window.confirm("Added in your favourite list")
 
-    if(!(flag_data.includes(flag_details))){
-      flag_data.push(flag_details)
-      localStorage.setItem("fav_list",JSON.stringify(flag_data))
+    if(message == true){
+      fav_icon.style.backgroundImage = "linear-gradient(120deg,red,gray)"
+      
+      if(!(flag_data.includes(flag_details))){
+          flag_data.push(flag_details)
+          localStorage.setItem("fav_list",JSON.stringify(flag_data))
+      }
     }
+
   })
 })
 
