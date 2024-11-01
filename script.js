@@ -10,7 +10,7 @@ let languages = []
 let region = []
 let allcards = []
 let dropDownData = []
-let storeData = {}
+let storeData = [];
 
 
 
@@ -21,19 +21,28 @@ async function apiFetch(){
   return res.json()
 }
 
+
 apiFetch().then((data)=>{
   data.forEach((ele)=>{
     // storing region
     if(!(region.includes(ele.region))){
       region.push(ele.region)
     }
-
     //storing lanugages
     for(let i in ele.languages){
       if(!(languages.includes(ele.languages[i]))){
         languages.push(ele.languages[i])
+
       }
     }
+
+    let obj = {
+      name : ele.name.common.length < ele.name.official.length? ele.name.common:ele.name.official,
+      languages:ele.languages,
+      region: ele.region,
+      count: 1
+    }
+    storeData.push(obj)
   })
 
   languages = languages.sort()
@@ -54,9 +63,8 @@ apiFetch().then((data)=>{
 
 
   createCard(data)
-
-
 })
+
 
 
 // printing function
@@ -67,9 +75,9 @@ function createCard(data){
   let h2
 
     data.forEach((ele)=>{
-       div = document.createElement("div")
-       img = document.createElement("img")
-       h2 = document.createElement("h2")
+      div = document.createElement("div")
+      img = document.createElement("img")
+      h2 = document.createElement("h2")
       div.className = "child"
       h2.className = "card_heading"
     
@@ -86,7 +94,7 @@ function createCard(data){
       else{
         h2.textContent = ele.name.official
       }
-      })
+    })
 
   let count = 10
     for(let i=0; i<10; i++){
@@ -121,9 +129,6 @@ function createCard(data){
 }
 
 
-
-
-
 search_section.addEventListener("change",(e)=>{
   let change = e.target.value.toLowerCase()
 
@@ -141,3 +146,58 @@ search_section.addEventListener("change",(e)=>{
   })
 
 })
+
+
+languages_select.addEventListener("change",(e)=>{
+  const value = e.target.value;
+
+  allcards.forEach((card)=>{
+    card.style.display = "none"
+  })
+
+  storeData.forEach((ele)=>{
+    let name = ele["name"];
+    let languages = ele["languages"]
+
+    for(let i in languages){
+      if(languages[i]===value){
+
+      allcards.forEach((card)=>{
+        let foundHeading = card.children[0].textContent
+          if(name === foundHeading){
+            card.style.display = "block"
+            main_container.append(card)
+          }
+
+        })
+      }
+    }
+  })
+})
+
+
+region_select.addEventListener("change",(e)=>{
+  const value = e.target.value;
+
+  allcards.forEach((card)=>{
+    card.style.display = "none"
+  })
+
+  storeData.forEach((ele)=>{
+    let name = ele["name"];
+    let region = ele["region"]
+
+    if(region ===value){
+      console.log(region,value)
+      allcards.forEach((card)=>{
+        let foundHeading = card.children[0].textContent
+          if(name === foundHeading){
+            card.style.display = "block"
+            main_container.append(card)
+          }
+      })
+    }
+  })
+})
+
+

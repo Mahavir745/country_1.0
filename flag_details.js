@@ -62,10 +62,10 @@ apiFetch().then((data)=>{
   fav_icon.addEventListener("click",()=>{
     fav_icon.style.backgroundImage = "linear-gradient(120deg,red,gray)"
 
+
     if(!(flag_data.includes(flag_details))){
       flag_data.push(flag_details)
       localStorage.setItem("fav_list",JSON.stringify(flag_data))
-
     }
   })
 })
