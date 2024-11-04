@@ -76,8 +76,63 @@ header{
           background-clip: text;
           font-weight: 500;
           padding: 20px;
+
+
+          span{
+            float: right;
+            background-image: linear-gradient(90deg,red,pink);
+            background-clip: text;
+            cursor: pointer;
+            font-size: 56px
+          };
         }
 
+        .fav_country_list{
+          width: 300px;
+          max-height: 200px;
+          position: absolute;
+          right: 10px;
+          background-color: var(--element-color3);
+          padding: 4px;
+          overflow-y: scroll;
+          display: none;
+
+          div{
+            max-height: 80px;
+            width: 95%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border: 1px solid #ccc;
+            margin-bottom: 4px;
+
+            .p1{
+              font-size: 14px;
+              width: 124px;
+              word-break: break-all;
+              /* border: 1px solid red; */
+            }
+            .p2{
+              font-size: 28px;
+              width: 46px;
+              /* border: 1px solid red; */
+            }
+            .p3{
+              font-size: 38px;
+              color: red;
+              width: 46px;
+            }
+          }
+
+          div:hover{
+            background-color: #ede8e8;
+            cursor: pointer;
+          }
+        }
+
+        .fav_country_display{
+          display: block;
+        }
 
       }
       .child2{

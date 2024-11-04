@@ -1,78 +1,81 @@
-const title = document.querySelector("title")
-const flagPic = document.querySelector("#flagImage")
-const backBtn = document.querySelector("#backBtn")
-const flag_name = document.querySelector("#flag_name")
-const p_element1 = document.querySelector(".p_element1")
-const p_element2 = document.querySelector(".p_element2")
-const p_element3 = document.querySelector(".p_element3")
-const p_element4 = document.querySelector(".p_element4")
-const p_element5 = document.querySelector(".p_element5")
-const p_element6 = document.querySelector(".p_element6")
+const title = document.querySelector("title");
+const flagPic = document.querySelector("#flagImage");
+const backBtn = document.querySelector("#backBtn");
+const flag_name = document.querySelector("#flag_name");
+const p_element1 = document.querySelector(".p_element1");
+const p_element2 = document.querySelector(".p_element2");
+const p_element3 = document.querySelector(".p_element3");
+const p_element4 = document.querySelector(".p_element4");
+const p_element5 = document.querySelector(".p_element5");
+const p_element6 = document.querySelector(".p_element6");
 
-
-
-
-const getTitle = localStorage.getItem("flagname")
-let flag_details = {}
+const getdata = JSON.parse(localStorage.getItem("flagname"));
+let flag_details = {};
 let flag_data = JSON.parse(localStorage.getItem("fav_list")) || [];
-title.textContent = getTitle
 
-backBtn.addEventListener("click",()=>{
-  location.href = "index.html"
-})
 
-// fetching data
-async function apiFetch(){
-  const res = await fetch("https://restcountries.com/v3.1/all")
-  return res.json()
+title.textContent = getdata.flag_name
+flag_name.innerHTML = `${getdata.flagname} <span id='fav_icon'>❤︎</span>`;
+
+
+backBtn.addEventListener("click", () => {
+  location.href = "index.html";
+});
+
+// Fetching data
+async function apiFetch() {
+  const res = await fetch("https://restcountries.com/v3.1/all");
+  return res.json();
 }
 
-apiFetch().then((data)=>{
-  data.forEach((ele)=>{
-    if(ele.name.common === getTitle){
-      flag_details["topLevelDomain"] = ele.tld[0]
-      flag_details["capital"] = ele.capital[0]
-      flag_details["region"] = ele.region
-      flag_details["population"] = ele.population
-      flag_details["area"] = ele.area
-      flag_details["languages"] = ele.languages
-      flag_details["flagIcon"] = ele.flag
-      flag_details["flagImage"] = ele.flags.png
+apiFetch().then((data) => {
+  data.forEach((ele) => {
+    const name = ele.name.common.length < ele.name.official.length ? ele.name.common : ele.name.official;
+
+    if (name === getdata.flagname) {
+      flag_details = {
+        topLevelDomain: ele.tld[0],
+        capital: ele.capital[0],
+        region: ele.region,
+        population: ele.population,
+        area: ele.area,
+        languages: ele.languages,
+        flagIcon: ele.flag,
+        flagImage: ele.flags.png,
+        flagName: name,
+        found: getdata.found || false, 
+      };
     }
-  })
+  });
 
-  flagPic.src = flag_details.flagImage
-  flag_name.innerHTML = `${getTitle} 
-  <span id='fav_icon'>❤︎</span>`
-  p_element1.textContent = `Capital: ${flag_details.capital}`
-  p_element2.textContent = `Region: ${flag_details.region}`
-  p_element3.textContent = `Area: ${flag_details.area}`
 
-  let stringLang = " "
-  for(let i in flag_details.languages){
-    stringLang+=`${flag_details.languages[i]}, `
-    p_element4.textContent = `Languages: ${stringLang}`
+  flagPic.src = flag_details.flagImage;
+  p_element1.textContent = `Capital: ${flag_details.capital}`;
+  p_element2.textContent = `Region: ${flag_details.region}`;
+  p_element3.textContent = `Area: ${flag_details.area}`;
+
+  const stringLang = Object.values(flag_details.languages).join(', ');
+  p_element4.textContent = `Languages: ${stringLang}`;
+
+  p_element5.innerHTML = `<h1>${flag_details.population}</h1> <span>population</span>`;
+  p_element6.textContent = flag_details.flagIcon;
+
+  const fav_icon = document.querySelector("#fav_icon");
+  
+
+  if (flag_data.some(flag => flag.flagName === flag_details.flagName)) {
+    fav_icon.style.color = "red"; 
+    flag_details.found = true;
   }
 
-  p_element5.innerHTML = `<h1>${flag_details.population}</h1> <span>population</span>`
-  p_element6.textContent = flag_details.flagIcon
-
-
-  let fav_icon = document.querySelector("#fav_icon")
-  fav_icon.addEventListener("click",()=>{
-
-    let message = window.confirm("Added in your favourite list")
-
-    if(message == true){
-      fav_icon.style.backgroundImage = "linear-gradient(120deg,red,gray)"
-      
-      if(!(flag_data.includes(flag_details))){
-          flag_data.push(flag_details)
-          localStorage.setItem("fav_list",JSON.stringify(flag_data))
-      }
+  fav_icon.addEventListener("click", () => {
+    if (!flag_details.found) {
+      flag_data.push(flag_details);
+      localStorage.setItem("fav_list", JSON.stringify(flag_data));
+      fav_icon.style.color = "red"; 
+      flag_details.found = true;
+      getdata.found = true;
+      localStorage.setItem('flagname', JSON.stringify(getdata)); // Save back to local storage
     }
-
-  })
-})
-
-
+  });
+});
