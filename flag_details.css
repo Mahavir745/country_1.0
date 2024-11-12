@@ -168,3 +168,51 @@ main{
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  main{
+    width: 1024px;
+    .main_container{
+      width: 1000px;
+
+      .child1{
+        height: 580px;
+      }
+      .child2{
+        width: 700px;
+        height: 580px;
+        /* border: 1px solid red; */
+        box-shadow: 2px 3px 4px #808080;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  main{
+    width: 480px;
+    .main_container{
+      width: 440px;
+      margin:40px auto;
+      height: 720px;
+      /* border: 1px solid red; */
+      display: block;
+  
+      .child1{
+        width: 400px;
+        height: 400px;
+
+        .child1_items1{
+          width: 390px;
+          height: 300px;
+        }
+  
+      }
+  
+      .child2{
+        width: 400px;
+        height: 600px;
+      }
+    }
+  }
+}

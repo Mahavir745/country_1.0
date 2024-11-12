@@ -75,7 +75,7 @@ apiFetch().then((data) => {
       fav_icon.style.color = "red"; 
       flag_details.found = true;
       getdata.found = true;
-      localStorage.setItem('flagname', JSON.stringify(getdata)); // Save back to local storage
+      localStorage.setItem('flagname', JSON.stringify(getdata)); 
     }
   });
 });

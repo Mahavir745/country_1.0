@@ -314,7 +314,157 @@ main{
   }
 }
 
+
+
 /* footer part start */
 /* footer{
 
 } */
+
+
+
+@media screen and (max-width: 1280px) {
+  header{
+
+    .header_container{
+      width: 1280px;
+      height: 200px;
+      left: 0px;
+      top: 0px;
+      .child{
+        width: 1160px;
+      }
+    }
+}
+
+/* main part start */
+main{
+  .main_container{
+    position: relative;
+    top: 200px;
+    width: 1220px;
+  }
+}
+
+}
+
+@media screen and (max-width: 1024px) {
+  header{
+
+    .header_container{
+      width: 1024px;
+      height: 200px;
+      left: 0px;
+      top: 0px;
+
+      .child{
+        width: 1000px;
+      }
+
+
+
+      .child2{
+        height: 60px;
+        padding: 8px 4px 8px 2px;
+        display: flex;
+        justify-content: center;
+
+        .child2_items2{
+          width: 600px;
+          /* border: 1px solid red; */
+          select{
+            width: 240px;
+            background-position: 200px;
+    
+          }
+        }
+ 
+      }
+    }
+}
+
+/* main part start */
+main{
+  .main_container{
+    position: relative;
+    top: 200px;
+    width: 1020px;
+
+    .child{
+      width: 280px;
+      height: 280px;
+
+      h2{
+        width: 94%;
+        height: 40px;
+      }
+      
+      img{
+        width: 280px;
+        height: 180px;
+      }
+    }
+  }
+}
+
+}
+
+@media screen and (max-width: 860px) {
+  header{
+
+    .header_container{
+      width: 840px;
+      height: 200px;
+      left: 0px;
+      top: 0px;
+
+      .child{
+        width: 840px;
+      }
+
+      .child2{
+        height: 60px;
+        padding: 8px 4px 8px 2px;
+        display: flex;
+        justify-content: center;
+
+        .child2_items2{
+          width: 500px;
+          /* border: 1px solid red; */
+          select{
+            width: 180px;
+            background-position: 140px;
+            font-size: 14px;
+    
+          }
+        }
+ 
+      }
+    }
+}
+
+/* main part start */
+main{
+  .main_container{
+    position: relative;
+    top: 200px;
+    width: 840px;
+
+    .child{
+      width: 320px;
+      height: 280px;
+      h2{
+        width: 92%;
+        height: 40px;
+      }
+      
+      img{
+        width: 310px;
+        height: 180px;
+        box-shadow: 1px 1px 2px rgba(128, 128, 128, 0.726);
+      }
+    }
+  }
+}
+
+}
